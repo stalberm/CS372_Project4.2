@@ -24,8 +24,9 @@ def get_next_word_packet(s):
 
     while True:
 
-        string_bytes = int.from_bytes(packet_buffer[0:2], "big")
-        packet_length = string_bytes + 2
+        if len(packet_buffer) > 2:
+            string_bytes = int.from_bytes(packet_buffer[0:2], "big")
+            packet_length = string_bytes + 2
 
         if len(packet_buffer) >= packet_length:
         
@@ -37,6 +38,7 @@ def get_next_word_packet(s):
         chunk = s.recv(5)
         if len(chunk) == 0:
             return None
+
         packet_buffer = packet_buffer + chunk
 
 
