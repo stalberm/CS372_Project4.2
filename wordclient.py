@@ -28,19 +28,17 @@ def get_next_word_packet(s):
             string_bytes = int.from_bytes(packet_buffer[0:2], "big")
             packet_length = string_bytes + 2
 
-        if len(packet_buffer) >= packet_length:
-        
-            packet = packet_buffer[:packet_length]
-            packet_buffer = packet_buffer[packet_length:]
-        
-            return packet
+            if len(packet_buffer) >= packet_length:
+            
+                packet = packet_buffer[:packet_length]
+                packet_buffer = packet_buffer[packet_length:]
+            
+                return packet
 
         chunk = s.recv(5)
         if len(chunk) == 0:
             return None
-
         packet_buffer = packet_buffer + chunk
-
 
 
 
