@@ -24,9 +24,9 @@ def get_next_word_packet(s):
 
     while True:
 
-        if len(packet_buffer) > 2:
-            string_bytes = int.from_bytes(packet_buffer[0:2], "big")
-            packet_length = string_bytes + 2
+        if len(packet_buffer) > WORD_LEN_SIZE:
+            string_bytes = int.from_bytes(packet_buffer[0:WORD_LEN_SIZE], "big")
+            packet_length = string_bytes + WORD_LEN_SIZE
 
             if len(packet_buffer) >= packet_length:
             
